@@ -1,6 +1,7 @@
 import assign from 'lodash.assign'
 import makeCase from './makeCase'
 import VerifyCases from './util/VerifyCases'
+import util from 'util'
 
 const CONFIG = Symbol('CONFIG'),
 			CASES = Symbol('CASES'),
@@ -39,6 +40,7 @@ export default class Enum {
 
 			default: throw new Error('Unknown configuration recieved')
 		}
+		console.log('this[CONFIG] = ', util.inspect(this[CONFIG]))
 		return this
 	}
 
