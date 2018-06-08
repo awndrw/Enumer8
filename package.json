@@ -1,0 +1,38 @@
+{
+	"name": "enumer8",
+	"version": "1.0.0",
+	"description": "A simple enumeration library for Node.js",
+	"author": {
+		"name": "Andrew Wiggin",
+		"email": "azwiggin@gmail.com"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/azwiggin/enumer8.git"
+	},
+	"bugs": {
+		"url": "https://github.com/azwiggin/enumer8/issues"
+	},
+	"homepage": "https://github.com/azwiggin/enumer8#readme",
+	"main": "lib/Enumer8.js",
+	"scripts": {
+		"build": "./.bin/build",
+		"test": "./.bin/test"
+	},
+	"dependencies": {
+		"lodash.assign": "^4.2.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.0.0-beta.49",
+		"@babel/core": "^7.0.0-beta.49",
+		"@babel/plugin-proposal-class-properties": "^7.0.0-beta.49",
+		"@babel/plugin-syntax-class-properties": "^7.0.0-beta.49",
+		"@babel/polyfill": "^7.0.0-beta.49",
+		"@babel/preset-env": "^7.0.0-beta.49",
+		"@babel/register": "^7.0.0-beta.49",
+		"chai": "^4.1.2",
+		"debug": "^3.1.0",
+		"mocha": "^5.2.0"
+	}
+}

@@ -1,0 +1,4 @@
+#!/bin/bash
+DEBUG=enumer8:*
+npm run build
+mocha
