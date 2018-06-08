@@ -8,14 +8,8 @@
 * [Usage](#usage)
 * [Configuration](#configuration)
 	* [Options](#configuration/options)
-		* [type](#configuration/options/type)
-		* [freeze](#configuration/options/freeze)
-		* [ignoreCase](#configuration/options/ignoreCase)
 * [API](#api)
 	* [case](#api/case)
-
-
-
 
 
 <a name='installation' />
@@ -60,8 +54,6 @@ new Enum('string')
 
 #### Options ({option: default})
 
-<a name='configuration/options/type' />
-
 ###### `{ type: false }`
 The `type` option can be set to a string type (`'string'`, `'number'`, ...) or `false`. If raw values are not provided, they will be created according to the specified type.
 Example:
@@ -77,8 +69,6 @@ PetNames.case({
 PetNames.case({ Snake: true }) // Throws TypeError
 ```
 
-<a name='configuration/options/freeze' />
-
 ###### `{ freeze: false }`
 When true, Enumer8 will automatically freeze the enumeration after the first case is set.
 Example:
@@ -90,8 +80,6 @@ let FavCities = new Enum({ freeze: true }).case([
 ])
 FavCities.case('Toronto') // Logs error but DOES NOT THROW
 ```
-
-<a name='configuration/options/ignoreCase' />
 
 ###### `{ ignoreCase: false }`
 TODO: Add ignoreCase functionality
