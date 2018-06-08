@@ -4,9 +4,9 @@ import debug from 'debug'
 const expect = chai.expect,
 			should = chai.should()
 const d = debug('enumer8:test')
-import Enum from '../src/Enumer8'
+import Enum from '../lib/Enumer8'
 
-describe('ES6', () => {
+describe('Production', () => {
 
 	describe('Basic string properties', () => {
 		it('should contain the propterties "Prop1" to "Prop3"', () => {
