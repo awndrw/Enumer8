@@ -32,14 +32,16 @@ describe('Production', () => {
 		it('should throw an error when adding a case after freezing', () => {
 			let FreezeEnum = new Enum().case('Prop1','Prop2')
 			FreezeEnum.freeze()
-			expect(() => FreezeEnum.case('Prop3')).to.throw()
+			FreezeEnum.case('Prop3')
+			expect(FreezeEnum).to.not.have.property('Prop3')
 		})
 	})
 	
 	describe('Auto freeze', () => {
 		it('should throw an error when adding a second case', () => {
 			let FrozenEnum = new Enum({freeze: true}).case('Prop1', 'Prop2')
-			expect(() => FreezeEnum.case('Prop3')).to.throw()
+			FrozenEnum.case('Prop3')
+			expect(FrozenEnum).to.not.have.property('Prop3')
 		})
 	})
 

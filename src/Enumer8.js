@@ -51,7 +51,10 @@ export default class Enum {
 	 * @return {Enum}
 	 */
 	case (...Case) {
-		if (this[FROZEN]) throw new Error('Cases cannot be added after the enumeration is frozen.')
+		if (this[FROZEN]) {
+			console.error('Cases cannot be added after the enumeration is frozen.')
+			return this
+		}
 
 		let {cases, type} = VerifyCases(Case)
 
