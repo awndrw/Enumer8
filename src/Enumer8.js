@@ -1,11 +1,13 @@
 import assign from 'lodash.assign'
 import makeCase from './makeCase'
+import fix from './util/fix'
 import VerifyCases from './util/VerifyCases'
 import util from 'util'
 
 const CONFIG = Symbol('CONFIG'),
 			CASES = Symbol('CASES'),
-			FROZEN = Symbol('FROZEN')
+			FROZEN = Symbol('FROZEN'),
+			IDS = Symbol('IDS')
 
 
 /**
@@ -40,7 +42,6 @@ export default class Enum {
 
 			default: throw new Error('Unknown configuration recieved')
 		}
-		console.log('this[CONFIG] = ', util.inspect(this[CONFIG]))
 		return this
 	}
 
@@ -58,11 +59,7 @@ export default class Enum {
 
 		switch (type) {
 			case 'array':
-				if (this[CONFIG.type] !== false) throw new Error('Type cannot be enforced when raw values are not present')
-				else {
-					this[CONFIG].type = 'string'
-					cases.forEach(c => this.pushCase(c))
-				}
+				cases.forEach(c => this.pushCase(c))
 				break
 
 			case 'object':
@@ -100,7 +97,7 @@ export default class Enum {
 	 * @return {Array}
 	 */
 	get cases() {
-		this[CASES] = this[CASES] || []
+		this[CASES] = this[CASES] || {}
 		return this[CASES]
 	}
 
@@ -114,10 +111,43 @@ export default class Enum {
 	 * @param {*} [rawValue] Optional raw value
 	 * @private
 	 */
-	pushCase = (id, rawValue) => {
-		const newCase = makeCase(id, rawValue, this[CONFIG].type, this.cases.length)
+	pushCase = (id, val) => {
+		this.ids.push(id)
+		let newCase = {
+			id: id,
+			rawValue: this.typeResolve(id, val, this[CONFIG].type)
+		}
 		this[id] = newCase
-		this.cases[id] = this[CONFIG].type ? newCase : id
+		this.cases[id] = newCase
+	}
+
+	/**
+	 * Returns a custom rawValue if none is provided
+	 * @param {string} type The type of raw value to return
+	 * @param {string} id
+	 * @private
+	 */
+	typeResolve = (id, rawValue, type) => {
+		switch (typeof rawValue) {
+			case 'undefined':
+				switch (type) {
+					case false: return id
+					case 'string': return id
+					case 'number': return this.ids.indexOf(id) + 1
+					case 'boolean': return true
+					default: throw new Error('The provided type was not found!')
+				}
+			case this[CONFIG].type: return rawValue
+			default: throw new Error(`Raw value must conform to the specified type.\nRaw value: ${typeof rawValue}, Expected: ${this[CONFIG].type}`)
+		}
+	}
+
+	/**
+	 * @private
+	 */
+	get ids() {
+		this[IDS] = this[IDS] || []
+		return this[IDS]
 	}
 
 }

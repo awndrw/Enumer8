@@ -4,7 +4,7 @@ import debug from 'debug'
 const expect = chai.expect,
 			should = chai.should()
 const d = debug('enumer8:test')
-import Enum from '../lib/Enumer8'
+import Enum from '../src/Enumer8'
 
 describe('Production', () => {
 
@@ -40,6 +40,14 @@ describe('Production', () => {
 		it('should throw an error when adding a second case', () => {
 			let FrozenEnum = new Enum({freeze: true}).case('Prop1', 'Prop2')
 			expect(() => FreezeEnum.case('Prop3')).to.throw()
+		})
+	})
+
+	describe('Auto Creating Raw Values', () => {
+		it('should create a raw value with the items index', () => {
+			let AutoRawVal = new Enum('number').case('Prop1', 'Prop2')
+			expect(AutoRawVal.Prop1).to.have.property('rawValue', 1)
+			expect(AutoRawVal.Prop2).to.have.property('rawValue', 2)
 		})
 	})
 

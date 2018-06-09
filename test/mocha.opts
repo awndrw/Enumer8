@@ -1,5 +1,5 @@
 # mocha.opts
 
---reporter dot
+--reporter min
 --require @babel/register
 --require @babel/polyfill
