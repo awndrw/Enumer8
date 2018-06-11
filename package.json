@@ -20,9 +20,7 @@
 		"build": "./.bin/build",
 		"test": "./.bin/test"
 	},
-	"dependencies": {
-		"lodash.assign": "^4.2.0"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@babel/cli": "^7.0.0-beta.49",
 		"@babel/core": "^7.0.0-beta.49",

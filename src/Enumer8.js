@@ -1,8 +1,4 @@
-import assign from 'lodash.assign'
-import makeCase from './makeCase'
-import fix from './util/fix'
 import VerifyCases from './util/VerifyCases'
-import util from 'util'
 
 const CONFIG = Symbol('CONFIG'),
 			CASES = Symbol('CASES'),
@@ -33,11 +29,11 @@ export default class Enum {
 	constructor(config = {}) {
 		switch (typeof config) {
 			case 'object':
-				this[CONFIG] = assign({}, DEFAULTS, config)
+				this[CONFIG] = Object.assign(DEFAULTS, config)
 				break
 
 			case 'string':
-				this[CONFIG] = assign({}, DEFAULTS, {type: config})
+				this[CONFIG] = Object.assign(DEFAULTS, {type: config})
 				break
 
 			default: throw new Error('Unknown configuration recieved')
@@ -116,10 +112,12 @@ export default class Enum {
 	 */
 	pushCase = (id, val) => {
 		this.ids.push(id)
-		let newCase = {
-			id: id,
-			rawValue: this.typeResolve(id, val, this[CONFIG].type)
-		}
+		let newCase = { id: id }
+		
+		if (typeof val === 'undefined') newCase.rawValue = this.typeResolve(id, val, this[CONFIG].type)
+		else if (typeof val !== this[CONFIG].type) throw new Error(`Raw value must conform to the specified type.\nRaw value: ${typeof rawValue}, Expected: ${this[CONFIG].type}`)
+		else newCase.rawValue = val
+
 		this[id] = newCase
 		this.cases[id] = newCase
 	}

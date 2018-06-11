@@ -41,9 +41,7 @@ console.log(Pets.Cat) // { id:'Cat' , rawValue:'Cat' }
 ## Configuration
 Each enumeration can be configured on instantiation:
 ```js
-new Enum({
-	//...
-})
+new Enum({ /* ... */ })
 ```
 Alternatively, the config parameter can be used to set type ([see `type` configuration](#configuration/options/type)):
 ```js
@@ -52,10 +50,10 @@ new Enum('string')
 
 <a name='configuration/options' />
 
-#### Options ({option: default})
+#### Options (`{option: default}`)
 
 ###### `{ type: false }`
-The `type` option can be set to a string type (`'string'`, `'number'`, ...) or `false`. If raw values are not provided, they will be created according to the specified type.
+The `type` option can be set to a string type (`'string'`, `'number'`, ...) or `false`. If raw values are not provided, they will be created according to the specified type.  
 Example:
 ```js
 let PetNames = new Enum('string')
@@ -70,7 +68,7 @@ PetNames.case({ Snake: true }) // Throws TypeError
 ```
 
 ###### `{ freeze: false }`
-When true, Enumer8 will automatically freeze the enumeration after the first case is set.
+When true, Enumer8 will automatically freeze the enumeration after the first case is set.  
 Example:
 ```js
 let FavCities = new Enum({ freeze: true }).case([
@@ -80,13 +78,6 @@ let FavCities = new Enum({ freeze: true }).case([
 ])
 FavCities.case('Toronto') // Logs error but DOES NOT THROW
 ```
-
-###### `{ ignoreCase: false }`
-TODO: Add ignoreCase functionality
-Example:
-```js
-```
-
 
 <a name='api' />
 
