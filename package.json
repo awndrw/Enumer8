@@ -1,6 +1,6 @@
 {
 	"name": "enumer8",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "A simple enumeration library for Node.js",
 	"author": {
 		"name": "Andrew Wiggin",
