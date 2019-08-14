@@ -1,9 +1,9 @@
 import VerifyCases from './util/VerifyCases'
 
 const CONFIG = Symbol('CONFIG'),
-			CASES = Symbol('CASES'),
-			FROZEN = Symbol('FROZEN'),
-			IDS = Symbol('IDS')
+	CASES = Symbol('CASES'),
+	FROZEN = Symbol('FROZEN'),
+	IDS = Symbol('IDS')
 
 
 /**
@@ -38,6 +38,7 @@ export default class Enum {
 
 			default: throw new Error('Unknown configuration recieved')
 		}
+		
 		return this
 	}
 
@@ -69,8 +70,6 @@ export default class Enum {
 			default:
 				throw new Error('UNKNOWN TYPE?')
 		}
-
-		if (this[CONFIG].freeze) this[FROZEN] = true
 
 		return this
 	}
@@ -113,9 +112,9 @@ export default class Enum {
 	pushCase = (id, val) => {
 		this.ids.push(id)
 		let newCase = { id: id }
-		
+		console.log(`id: ${id}, val: ${val}, type: ${this[CONFIG].type}`)
 		if (typeof val === 'undefined') newCase.rawValue = this.typeResolve(id, val, this[CONFIG].type)
-		else if (typeof val !== this[CONFIG].type) throw new Error(`Raw value must conform to the specified type.\nRaw value: ${typeof rawValue}, Expected: ${this[CONFIG].type}`)
+		else if (typeof val !== this[CONFIG].type) throw new TypeError(`Raw value must conform to the specified type.\nRaw value: ${typeof val}, Expected: ${this[CONFIG].type}`)
 		else newCase.rawValue = val
 
 		this[id] = newCase

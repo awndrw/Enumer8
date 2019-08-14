@@ -43,7 +43,7 @@ Each enumeration can be configured on instantiation:
 ```js
 new Enum({ /* ... */ })
 ```
-Alternatively, the config parameter can be used to set type ([see `type` configuration](#configuration/options/type)):
+Alternatively, the config parameter can be used to initialize an enumeration of a set type ([see `type` configuration](#configuration/options/type)):
 ```js
 new Enum('string')
 ```
@@ -52,7 +52,7 @@ new Enum('string')
 
 #### Options (`{option: default}`)
 
-###### `{ type: false }`
+###### `{ type: 'string' }`
 The `type` option can be set to a string type (`'string'`, `'number'`, ...) or `false`. If raw values are not provided, they will be created according to the specified type.  
 Example:
 ```js
@@ -67,29 +67,24 @@ PetNames.case({
 PetNames.case({ Snake: true }) // Throws TypeError
 ```
 
-###### `{ freeze: false }`
-When true, Enumer8 will automatically freeze the enumeration after the first case is set.  
-Example:
-```js
-let FavCities = new Enum({ freeze: true }).case([
-	'San Francisco',
-	'Paris',
-	'New York'
-])
-FavCities.case('Toronto') // Logs error but DOES NOT THROW
-```
-
 <a name='api' />
 
 ## API
 
 <a name='api/case' />
- * `.case()`
-    * The main method for enumerations.
-    * Example:
-    ```js
-    MyEnum.case('Value1', 'Value2')
-    ```
+
+`.case()`
+* The main method for enumerations. 
+* The case(s) provided must be strings, an array of strings, or an object
+
+<a name='api/freeze' />
+
+`.freeze()`
+* Freezes the current enumeration, preventing the modification of values.
+
+
+
+
 
 ---
 ## License

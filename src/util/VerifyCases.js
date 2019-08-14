@@ -19,8 +19,9 @@ const VerifyCases = (caseArray) => {
 		case 'object':
 			if (caseArray.length > 1) throw new Error('Individual values cannot be enumerated if an object/array is present')
 			if (Array.isArray(caseArray[0])) {
-				cases = VerifyCases(caseArray[0]).cases
-				type = VerifyCases(caseArray[0]).type
+				let verified = VerifyCases(caseArray[0])
+				cases = verified.cases
+				type = verified.type
 			} else {
 				cases = caseArray[0]
 				type = 'object'

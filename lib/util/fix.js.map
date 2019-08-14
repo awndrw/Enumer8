@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../src/util/fix.js"],"names":["val"],"mappings":";;;;;;;eAAe;AAAA,SAAOA,MAAM,IAAN,GAAa,KAApB;AAAA,C","sourcesContent":["export default val => val ? true : false\n"],"file":"fix.js"}
+{"version":3,"sources":["../../src/util/fix.js"],"names":["val"],"mappings":";;;;;;;eAAe,kBAAAA,GAAG;AAAA,SAAIA,GAAG,GAAG,IAAH,GAAU,KAAjB;AAAA,C","sourcesContent":["export default val => val ? true : false\n"],"file":"fix.js"}

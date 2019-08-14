@@ -36,14 +36,6 @@ describe('Production', () => {
 			expect(FreezeEnum).to.not.have.property('Prop3')
 		})
 	})
-	
-	describe('Auto freeze', () => {
-		it('should throw an error when adding a second case', () => {
-			let FrozenEnum = new Enum({freeze: true}).case('Prop1', 'Prop2')
-			FrozenEnum.case('Prop3')
-			expect(FrozenEnum).to.not.have.property('Prop3')
-		})
-	})
 
 	describe('Auto Creating Raw Values', () => {
 		it('should create a raw value with the items index', () => {
